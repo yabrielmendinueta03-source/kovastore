@@ -54,13 +54,19 @@
         <span class="logo-subtitle">ESSENTIALS</span>
       </a>
       <nav class="nav">
-        <div class="explore" id="explore">
-          <button class="explore-btn" id="exploreBtn">
-            <span class="material-symbols-rounded">explore</span>
-            <span>Explorar KOVA</span>
-            <span class="material-symbols-rounded">expand_more</span>
+        <div class="explore" id="explore" aria-expanded="false" aria-controls="exploreMenu">
+          <button class="explore-btn" id="exploreBtn" >
+            <span class="material-symbols-rounded icon">explore</span>
+            <span class="text">Explorar KOVA</span>
+            <span class="material-symbols-rounded arrow" aria-hidden="true">expand_more</span>
           </button>
-          <div class="explore-menu">
+
+          <!-- <button class="explore-btn" id="exploreBtn">
+            <span class="material-symbols-rounded">explore</span>
+            <span class="text">Explorar KOVA</span>
+            <span class="material-symbols-rounded">expand_more</span>
+          </button> -->
+          <div class="explore-menu" id="exploreMenu">
             <button data-jump="catalog"><span class="material-symbols-rounded">category</span> Catálogo</button>
             <button data-category="todos">Todos</button>
             <button data-category="hombre">Hombre</button>
@@ -222,7 +228,7 @@
   <aside class="cart" id="cart">
     <div class="cart-head">
       <strong>Tu carrito</strong>
-      <button id="closeCart"><span class="material-symbols-rounded">close</span></button>
+      <button id="closeCart"><span class="material-symbols-rounded pry">close</span></button>
     </div>
     <div class="cart-body" id="cartItems"></div>
     <div class="cart-foot">
@@ -236,7 +242,7 @@
   <div class="modal" id="detailModal">
     <div class="modal-box">
       <button class="modal-close" id="detailClose">
-        <span class="material-symbols-rounded">close</span>
+        <span class="material-symbols-rounded pry">close</span>
       </button>
       <div id="detailContent"></div>
     </div>

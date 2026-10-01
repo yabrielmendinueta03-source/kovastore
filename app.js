@@ -356,7 +356,7 @@ function card(p) {
         <p class="desc" title="${p.desc}">${truncate(p.desc, 75)}</p>
         
         <div class="actions">
-            <select class="variant" id="v-${p.id}">
+            <select class="variant font-sm" id="v-${p.id}">
                 ${p.variants.map((v, i) => `<option value="${i}">${v.size} — ${v.priceUSD} USD</option>`).join("")}
             </select>
             

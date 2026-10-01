@@ -157,6 +157,27 @@ header {
     color: var(--gold2)
 }
 
+.explore-btn .arrow {
+  margin-left: auto;                 /* empuja la flecha al borde derecho */
+  transition: transform .3s cubic-bezier(.22, 1, .36, 1);
+  will-change: transform;
+}
+
+/* Rotación cuando está abierto */
+.explore.open .arrow,
+.explore[aria-expanded="true"] .arrow {
+  transform: rotate(180deg);
+}
+
+/* Alternativa sin tocar JS (navegadores modernos con :has) */
+.control-top:has(+ .explore-menu.open) .explore .arrow {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explore .arrow { transition: none; }
+}
+
 .cart-btn {
     position: relative
 }
@@ -295,46 +316,6 @@ header {
     top: 50%;
     transform: translateY(-50%);
     color: var(--muted)
-}
-
-
-
-.md3-search-bar:focus-within {
-    background-color: var(--md-sys-color-surface);
-    box-shadow: var(--md-shadow-2);
-    border-color: var(--md-sys-color-outline);
-
-    .material-symbols-rounded {
-      color: var(--md-sys-color-primary);
-    }
-}
-
-.md3-search-bar .material-symbols-rounded {
-    color: var(--md-sys-color-tertiary);
-    font-size: 20px;
-}
-
-.md3-search-bar input {
-    border: none;
-    background: transparent;
-    font-size: 16px;
-    font-weight: 400;
-    width: 100%;
-    outline: none;
-    font-family: 'Roboto', sans-serif;
-}
-
-.md3-search-bar-btn-clear {
-    background: transparent;
-    border-radius: 50%;
-    font-size: 16px !important;
-    padding: 5px;
-    cursor: pointer;
-    transition: background 0.2s;
-} 
-
-.md3-search-bar-btn-clear:hover {
-    background: var(--md-hover-bg);
 }
 
 .drawer-toggle {
@@ -476,13 +457,12 @@ header {
 
 .pic {
     display: flex;
-    background: #f5f4f1;
     position: relative
 }
 
 .pic img {
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: contain;
 }
 
@@ -525,6 +505,7 @@ header {
 }
 
 .card h3 {
+    margin-top: 6px;
     font-size: 1.28rem
 }
 
@@ -885,6 +866,14 @@ footer strong {
     font-size: 1.4rem
 }
 
+button.tab-btn {
+    border: 1px solid rgba(201, 162, 78, .6);
+    background: transparent;
+    color: #fff;
+    border-radius: 9px;
+    padding: 9px 13px;
+}
+
 .detail {
     display: grid;
     grid-template-columns: 320px 1fr;
@@ -910,11 +899,11 @@ footer strong {
 }
 
 .details-actions {
-    min-height: 102px;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     gap: 16px;
+    justify-content: space-between;
 }
     
 .detail .meta {
@@ -930,7 +919,11 @@ footer strong {
     }
 
     .add {
-        font-size: small;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        font-size: 9px;
     }
 
     .control-top {
@@ -940,6 +933,14 @@ footer strong {
         align-items: center;
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    .explore-btn .icon {
+        display: none;
+    }
+
+    .explore-btn .text {
+        font-size: 12px;
     }
 
     .search {
@@ -963,7 +964,6 @@ footer strong {
         position: static
     }
 
-    .nav .explore-btn span,
     .cart-btn span.label {
         display: none
     }
@@ -978,10 +978,6 @@ footer strong {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
         padding: 0 10px
-    }
-
-    .card .pic {
-        height: 190px
     }
 
     .card-body {
@@ -1037,7 +1033,10 @@ footer strong {
         border-bottom-color: rgba(210, 173, 88, .35)
     }
 
-    .search input,
+    .search input {
+        color: var(--gold);
+    }
+
     .drawer-toggle,
     .filter-drawer,
     .filter-row select,
@@ -1077,9 +1076,9 @@ footer strong {
         box-shadow: 0 3px 18px rgba(0, 0, 0, .28)
     }
 
-    .pic {
+    /* .pic {
         background: #101010
-    }
+    } */
 
     .tag {
         background: #f0d48b;
@@ -1200,5 +1199,19 @@ footer strong {
     .explore-menu button:hover {
         background: #242018;
         color: var(--gold2)
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --gold2: #efd58b;
+    }
+
+    .search input {
+        color: var(--gold2);
+    }
+
+    .search input::placeholder {
+        color: #171717
     }
 }
